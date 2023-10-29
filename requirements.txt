@@ -1,1 +1,7 @@
 streamlit
+python-dotenv
+requests
+beautifulsoup4
+lxml
+websocket-client
+requests-toolbelt
