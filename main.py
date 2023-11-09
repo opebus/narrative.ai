@@ -13,12 +13,12 @@ async def root():
 
 
 @app.get("/github/repos")
-async def get_repos(username: str):
+async def repos(username: str):
     return get_repos(username)
 
 
-@app.get("/app/user")
-async def store(username: str, repository: list[str] = ["coherence"]):
+@app.get("/github/readme")
+async def store(username: str, repository: list[str]):
     for repo in repository:
         logging.info(f"Storing {repo} for {username}")
         readme = extract_repo_readme(username, repo)
