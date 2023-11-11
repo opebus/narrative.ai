@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-import { Providers } from "./providers";
+import type { Metadata } from 'next';
+import { Providers } from './providers';
 
-import "./globals.css";
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "Narrative.ai",
-  description: "Rolling out",
+  title: 'Narrative.ai',
+  description: 'Rolling out',
 };
 
 export default function RootLayout({
@@ -14,10 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="light">
+    <html lang='en' className='dark'>
       <body>
         <Providers>
-          <div className="max-w-xl m-auto">{children}</div>
+          <div className='m-auto'>{children}</div>
         </Providers>
       </body>
     </html>
