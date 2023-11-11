@@ -3,7 +3,7 @@ import Questions from '@/components/Questions'; // Adjust path as needed
 
 function Page() {
   return (
-    <div className='flex justify-center items-center h-screen'>
+    <div className='flex justify-center flex-col items-center h-screen'>
       <Questions />
     </div>
   );
