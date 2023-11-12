@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
+    "@tiptap/pm": "^2.1.12",
+    "@tiptap/react": "^2.1.12",
+    "@tiptap/starter-kit": "^2.1.12",
     "axios": "^1.6.1",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.4",
