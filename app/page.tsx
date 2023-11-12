@@ -2,10 +2,19 @@
 
 import type { NextPage } from 'next';
 import React from 'react';
-import { useRouter } from 'next/navigation'; // Adjust import for useRouter
-import { Button } from '@nextui-org/react';
-import Nav from './components/navbar/navbar'; // Ensure the path is correct
+import { useRouter } from 'next/navigation';
+import {
+  Button,
+  Spacer,
+  Image,
+  Accordion,
+  AccordionItem,
+} from '@nextui-org/react';
+import Nav from './components/navbar/navbar';
 import Bento from './components/bento/page';
+import { Footer } from './components/footer/page';
+import NextImage from 'next/image';
+import { Chip } from '@nextui-org/react';
 
 const Page: NextPage = () => {
   const router = useRouter();
@@ -17,24 +26,90 @@ const Page: NextPage = () => {
   return (
     <>
       <Nav />
-      <div className='w-screen min-h-screen p-4  flex flex-col items-center justify-center'>
-        <h1 className='text-3xl sm:text-5xl font-bold text-white-800 mb-4 text-center'>
-          Welcome to Narrative AI
+      <div className='w-screen flex flex-col items-center'>
+        <h1 className='text-xl sm:text-6xl max-w-2xl leading-tight mt-24 mb-6 text-center font-serif'>
+          Supercharge Your Grad School Application
         </h1>
-        <p className='text-md sm:text-lg text-gray-600 mb-6 text-center'>
-          Using AI to craft your life narrative
+        <p className='text-md sm:text-lg text-gray-600 mb-10 text-center font-sans font-light'>
+          Craft the perfect Statement of Purpose with Narrative AI
         </p>
         <Button
-          auto
           shadow
           size='lg'
           onClick={handleGetStartedClick}
-          className='bg-blue-500 hover:bg-blue-600 text-white'
+          className='bg-teal-800 hover:bg-teal-950 text-white font-bold text-xl'
         >
-          Get Started
+          Get Started{' '}
+          <p className='text-gray-300 text-sm font-light'> –– it's free</p>
         </Button>
+        <Spacer y={20} />
+
+        <Image
+          as={NextImage}
+          width={1200}
+          height={1000}
+          src='/images/wave.jpeg'
+          alt='NextUI hero Image'
+        />
+
+        <Spacer y={40} />
+
+        <div className='mb-6 text-center'>
+          <Chip className='mb-4 text-green-900 bg-green-200'>
+            Essential Features
+          </Chip>
+          <h1 className='text-4xl font-serif'>Discover, write, edit</h1>
+          <p className='text-sm sm:text-lg text-gray-600 mb-10 text-center font-sans font-light'>
+            Core features to enhance your grad school application
+          </p>
+          <Bento />
+        </div>
       </div>
-      <Bento />
+
+      <Spacer y={32} />
+
+      <div className='flex flex-col items-center justify-center '>
+        <Chip className='mb-4 text-green-900 bg-green-200'>Support</Chip>
+        <h1 className='text-4xl font-serif'>Frequently asked questions</h1>
+        <div className='flex justify-center w-full mt-10'>
+          <div className='w-full max-w-3xl'>
+            <Accordion
+              variant='splitted'
+              selectionMode='multiple'
+              fullWidth={true}
+            >
+              <AccordionItem
+                key='1'
+                aria-label='Accordion 1'
+                title='Does Narrative use GPT-4?'
+                className='text-gray-500'
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </AccordionItem>
+              <AccordionItem
+                key='2'
+                aria-label='Accordion 2'
+                title='What is a good SoP?'
+                className='text-gray-500'
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </AccordionItem>
+              <AccordionItem
+                key='3'
+                aria-label='Accordion 3'
+                title='Does this violate university policy'
+                className='text-gray-500'
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              </AccordionItem>
+            </Accordion>
+          </div>
+        </div>
+      </div>
+
+      <Spacer y={32} />
+
+      <Footer />
     </>
   );
 };

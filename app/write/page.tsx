@@ -1,5 +1,5 @@
 import React from 'react';
-import Tiptap from '@/components/Tiptap/Tiptap';
+import Tiptap from '@/components/editor/Tiptap';
 
 function Page() {
   return (

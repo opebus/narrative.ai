@@ -1,5 +1,12 @@
 import type { Metadata } from 'next';
 import { Providers } from './providers';
+import { Inter } from 'next/font/google';
+import clsx from 'clsx';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 import './globals.css';
 
@@ -14,7 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' className='light'>
+    <html
+      lang='en'
+      className={clsx(
+        'text-black bg-white dark:text-white dark:bg-[#111010]',
+        inter.className
+      )}
+    >
       <body>
         <Providers>
           <div className='m-auto'>{children}</div>
