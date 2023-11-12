@@ -13,7 +13,7 @@ const Github = () => {
   const getRepos = async (username: string) => {
     setIsRepoFetched(false);
     try {
-      const response = await fetch(`/api/github/${username}/repos`);
+      const response = await fetch(`/api/github/repos?username=${username}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
