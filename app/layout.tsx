@@ -28,9 +28,9 @@ export default function RootLayout({
         inter.className
       )}
     >
-      <body>
+      <body suppressHydrationWarning={true}>
         <Providers>
-          <div className='m-auto'>{children}</div>
+          <div className='m-auto bg-white'>{children}</div>
         </Providers>
       </body>
     </html>

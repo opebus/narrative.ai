@@ -24,7 +24,8 @@ const Tiptap: React.FC = () => {
   });
 
   return (
-    <>
+    <div className='max-w-3xl'>
+      <h1></h1>
       {editor && (
         <BubbleMenu
           className='bubble-menu'
@@ -41,7 +42,7 @@ const Tiptap: React.FC = () => {
       )}
 
       <EditorContent editor={editor} />
-    </>
+    </div>
   );
 };
 
