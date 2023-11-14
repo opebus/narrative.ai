@@ -1,5 +1,5 @@
 import React from 'react';
-import { Logo } from '../navbar/logo';
+import { Logo } from './logo';
 
 export const Footer = () => {
   return (

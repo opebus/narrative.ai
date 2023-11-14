@@ -1,7 +1,6 @@
 'use client';
 
-import type { NextPage } from 'next';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Button,
@@ -10,19 +9,14 @@ import {
   Accordion,
   AccordionItem,
 } from '@nextui-org/react';
-import Nav from './components/navbar/navbar';
-import Bento from './components/bento/page';
-import { Footer } from './components/footer/page';
+import Nav from './components/Navbar';
+import Bento from './components/Bento';
+import { Footer } from './components/Footer';
 import NextImage from 'next/image';
 import { Chip } from '@nextui-org/react';
+import { SignUpButton, useAuth } from '@clerk/nextjs';
 
-const Page: NextPage = () => {
-  const router = useRouter();
-
-  const handleGetStartedClick = () => {
-    router.push('/onboard');
-  };
-
+const Page = () => {
   return (
     <>
       <Nav />
@@ -33,17 +27,16 @@ const Page: NextPage = () => {
         <p className='text-md sm:text-lg text-gray-600 mb-10 text-center font-sans font-light'>
           Craft the perfect Statement of Purpose with Narrative AI
         </p>
-        <Button
-          shadow
-          size='lg'
-          onClick={handleGetStartedClick}
-          className='bg-teal-800 hover:bg-teal-950 text-white font-bold text-xl'
-        >
-          Get Started{' '}
-          <p className='text-gray-300 text-sm font-light'> –– it's free</p>
-        </Button>
+        <SignUpButton mode='modal' redirectUrl='/onboard'>
+          <Button
+            size='lg'
+            className='bg-teal-800 hover:bg-teal-950 text-white font-bold text-xl'
+          >
+            Get Started
+            <p className='text-gray-300 text-sm font-light'> –– it's free</p>
+          </Button>
+        </SignUpButton>
         <Spacer y={20} />
-
         <Image
           as={NextImage}
           width={1200}
@@ -51,9 +44,7 @@ const Page: NextPage = () => {
           src='/images/wave.jpeg'
           alt='NextUI hero Image'
         />
-
         <Spacer y={40} />
-
         <div className='mb-6 text-center'>
           <Chip className='mb-4 text-green-900 bg-green-200'>
             Essential Features
