@@ -1,42 +1,39 @@
-"use client";
+'use client';
 
-import Nav from "@/components/Navbar";
+import { Card, Chip } from '@nextui-org/react';
+import { Image } from '@nextui-org/react';
 
-import { Card, Chip } from "@nextui-org/react";
-import { Image } from "@nextui-org/react";
-
-import NextImage from "next/image";
+import NextImage from 'next/image';
 
 export default function University() {
   const universityData = {
-    name: "Harvard University",
+    name: 'Harvard University',
     facts:
-      "Aliqua officia esse veniam ut ullamco fugiat eu nulla in occaecat cillum duis. Ut elit dolore occaecat aute esse velit. Quis deserunt adipisicing aute. Deserunt elit officia esse anim eu magna quis quis. Ipsum proident est ad elit est magna ipsum labore proident aliqua excepteur. Aliquip eiusmod deserunt proident nisi eiusmod. Consequat culpa quis labore duis pariatur eu laborum ex amet cillum tempor occaecat magna est duis.",
-    ranking: "Ranked #15 globally.",
-    acceptanceRate: "25%",
-    eligibility: "Minimum GPA of 3.5, TOEFL score of 100.",
-    professors: ["Prof. John Doe", "Prof. Jane Smith"],
-    papers: ["Paper Title 1", "Paper Title 2"],
-    phdStudents: ["Student A", "Student B"],
-    alumni: ["Famous Alumnus 1", "Famous Alumnus 2"],
+      'Aliqua officia esse veniam ut ullamco fugiat eu nulla in occaecat cillum duis. Ut elit dolore occaecat aute esse velit. Quis deserunt adipisicing aute. Deserunt elit officia esse anim eu magna quis quis. Ipsum proident est ad elit est magna ipsum labore proident aliqua excepteur. Aliquip eiusmod deserunt proident nisi eiusmod. Consequat culpa quis labore duis pariatur eu laborum ex amet cillum tempor occaecat magna est duis.',
+    ranking: 'Ranked #15 globally.',
+    acceptanceRate: '25%',
+    eligibility: 'Minimum GPA of 3.5, TOEFL score of 100.',
+    professors: ['Prof. John Doe', 'Prof. Jane Smith'],
+    papers: ['Paper Title 1', 'Paper Title 2'],
+    phdStudents: ['Student A', 'Student B'],
+    alumni: ['Famous Alumnus 1', 'Famous Alumnus 2'],
   };
 
   return (
     <>
-      <Nav />
-      <div className="container mx-auto p-4">
-        <h1 className="text-bold text-xl">{universityData.name}</h1>
+      <div className='container mx-auto p-4'>
+        <h1 className='text-bold text-xl'>{universityData.name}</h1>
         <Image
           as={NextImage}
           width={1000}
           height={100}
-          src="/images/wave.jpeg"
-          alt="NextUI hero Image"
-          className="mt-4"
+          src='/images/wave.jpeg'
+          alt='NextUI hero Image'
+          className='mt-4'
         />
-        <p className="mt-4">{universityData.facts}</p>
+        <p className='mt-4'>{universityData.facts}</p>
         <>
-          <h1 className="text-bold text-lg mt-6">Ranking</h1>
+          <h1 className='text-bold text-lg mt-6'>Ranking</h1>
           Global Ranking: <Chip>{universityData.ranking}</Chip>
           CS ranking: <Chip> {universityData.ranking}</Chip>
         </>
