@@ -4,7 +4,6 @@ import { useRef, useState } from 'react';
 import { Select, SelectItem, Chip, Input, Button } from '@nextui-org/react';
 import { GitHubRepo } from '@/types/repo';
 import { Progress } from '@nextui-org/react';
-import Nav from '@/components/Navbar';
 
 export default function Onboard() {
   const [onboardingCurrentStep, setOnboardingCurrentStep] = useState<number>(0);
@@ -44,8 +43,7 @@ export default function Onboard() {
   };
 
   return (
-    <div className='flex flex-col h-screen'>
-      <Nav />
+    <div className='flex flex-col'>
       <Progress
         size='sm'
         aria-label='Loading...'
@@ -69,7 +67,7 @@ export default function Onboard() {
           </div>
           <Button
             onClick={stepComponents[onboardingCurrentStep].onBoardSubmit}
-            className='mb-20 w-full bg-teal-800 hover:bg-teal-950 text-white font-bold py-2 px-4 rounded'
+            className='mb-20 w-full bg-teal-800 hover:bg-teal-950 text-white font-bold py-2 px-4 rounded mt-10'
             variant='solid'
             isLoading={isLoading}
           >
@@ -178,7 +176,6 @@ const GitHub = ({ setData }) => {
 };
 
 const Resume = ({ setData }) => {
-  const [dragActive, setDragActive] = useState<boolean>(false);
   const inputRef = useRef<any>(null);
   const [files, setFiles] = useState<any>([]);
 
@@ -197,7 +194,6 @@ const Resume = ({ setData }) => {
   function handleDrop(e: any) {
     e.preventDefault();
     e.stopPropagation();
-    setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       for (let i = 0; i < e.dataTransfer.files['length']; i++) {
         setFiles((prevState: any) => [...prevState, e.dataTransfer.files[i]]);
@@ -208,19 +204,16 @@ const Resume = ({ setData }) => {
   function handleDragLeave(e: any) {
     e.preventDefault();
     e.stopPropagation();
-    setDragActive(false);
   }
 
   function handleDragOver(e: any) {
     e.preventDefault();
     e.stopPropagation();
-    setDragActive(true);
   }
 
   function handleDragEnter(e: any) {
     e.preventDefault();
     e.stopPropagation();
-    setDragActive(true);
   }
 
   function removeFile(fileName: any, idx: any) {
@@ -238,9 +231,7 @@ const Resume = ({ setData }) => {
   return (
     <>
       <form
-        className={`${
-          dragActive ? 'bg-teal-400' : 'bg-teal-100'
-        }  p-4 rounded-lg  min-h-[10rem] flex flex-col items-center justify-center`}
+        className='p-4 rounded-lg border-dashed border-2 min-h-[10rem] flex flex-col items-center justify-center'
         onDragEnter={handleDragEnter}
         onSubmit={(e) => e.preventDefault()}
         onDrop={handleDrop}
@@ -262,24 +253,25 @@ const Resume = ({ setData }) => {
             className='font-bold text-blue-600 cursor-pointer'
             onClick={openFileExplorer}
           >
-            <u>Select files</u>
+            Select files
           </span>{' '}
           to upload
         </p>
-
-        <div className='flex flex-col items-center p-3'>
-          {files.map((file: any, idx: any) => (
-            <div key={idx} className='flex flex-row space-x-5'>
-              <span>{file.name}</span>
-              <span
-                className='text-red-500 cursor-pointer'
-                onClick={() => removeFile(file.name, idx)}
-              >
-                remove
-              </span>
-            </div>
-          ))}
-        </div>
+        {files.length != 0 && (
+          <div className='flex flex-col items-center p-3'>
+            {files.map((file: any, idx: any) => (
+              <div key={idx} className='flex flex-row space-x-5'>
+                <span>{file.name}</span>
+                <span
+                  className='text-red-500 cursor-pointer'
+                  onClick={() => removeFile(file.name, idx)}
+                >
+                  remove
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
       </form>
     </>
   );

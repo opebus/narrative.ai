@@ -9,6 +9,7 @@ const inter = Inter({
 });
 
 import './globals.css';
+import Nav from '@/components/Navbar';
 
 export const metadata: Metadata = {
   title: 'Narrative.ai',
@@ -30,7 +31,10 @@ export default function RootLayout({
     >
       <body suppressHydrationWarning={true}>
         <Providers>
-          <div className='m-auto bg-white'>{children}</div>
+          <div className='bg-white h-screen'>
+            <Nav />
+            {children}
+          </div>
         </Providers>
       </body>
     </html>
