@@ -4,8 +4,11 @@ import { useRef, useState } from 'react';
 import { Select, SelectItem, Chip, Input, Button } from '@nextui-org/react';
 import { GitHubRepo } from '@/types/repo';
 import { Progress } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
 
 export default function Onboard() {
+  const router = useRouter();
+
   const [onboardingCurrentStep, setOnboardingCurrentStep] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedRepoNames, setSelectedRepoNames] = useState<string[]>([]);
@@ -21,8 +24,8 @@ export default function Onboard() {
   const handleResumeSelectionSubmit = async () => {
     setIsLoading(true);
     console.log('Selected files:', Array.from(selectedFiles));
-    setOnboardingCurrentStep(2);
     setIsLoading(false);
+    router.push('/dashboard');
   };
 
   const stepComponents: any = {
