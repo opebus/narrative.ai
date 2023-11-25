@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id               String   @id @default(uuid())
+  username         String
+  githubUsername   String?
+  CVText           String?
+  GitHubProjects   GitHub[]
+  QuestionResponses  Question[]
+  InterestedUniversities University[] @relation("UserUniversities")
+  InterestedProfessors Professor[] @relation("UserProfessors")
+  SOPs              SOP[]
+}
+
+model GitHub {
+  id               String   @id @default(uuid())
+  userId           String
+  project          String
+  projectReadme    String?
+  user             User     @relation(fields: [userId], references: [id])
+}
+
+model Question {
+  id               String   @id @default(uuid())
+  userId           String
+  questionNumber   Int
+  answer           String
+  user             User     @relation(fields: [userId], references: [id])
+}
+
+model University {
+  id               String   @id @default(uuid())
+  name             String
+  info             String?
+  ranking          Int?
+  acceptanceRate   Float?
+  eligibility      String?
+  submissionDeadline DateTime?
+  alumnis          String?
+  InterestedUsers  User[]   @relation("UserUniversities")
+  Professors       Professor[] @relation("UniversityProfessors")
+}
+
+model Professor {
+  id               String   @id @default(uuid())
+  name             String
+  researchFocus    String?
+  topPapers        String?
+  InterestedUsers  User[]   @relation("UserProfessors")
+  Universities     University[] @relation("UniversityProfessors")
+}
+
+model SOP {
+  id               String   @id @default(uuid())
+  userId           String
+  intro            String?
+  researchInt      String?
+  researchExp      String?
+  acadProfSummary  String?
+  whyPhD           String?
+  whyUni           String?
+  user             User     @relation(fields: [userId], references: [id])
+}
+
+// Many-to-Many relations
+model UserUniversity {
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  university University @relation(fields: [universityId], references: [id])
+  universityId String
+
+  @@id([userId, universityId])
+}
+
+model UserProfessor {
+  user       User     @relation(fields: [userId], references: [id])
+  userId     String
+  professor  Professor @relation(fields: [professorId], references: [id])
+  professorId String
+
+  @@id([userId, professorId])
+}
