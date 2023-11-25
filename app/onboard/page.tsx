@@ -1,10 +1,11 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Select, SelectItem, Chip, Input, Button } from '@nextui-org/react';
 import { GitHubRepo } from '@/types/repo';
 import { Progress } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
+import { extractTextFromPDF, readFileAsArrayBuffer } from '@/utils';
 
 export default function Onboard() {
   const router = useRouter();
@@ -23,9 +24,24 @@ export default function Onboard() {
 
   const handleResumeSelectionSubmit = async () => {
     setIsLoading(true);
-    console.log('Selected files:', Array.from(selectedFiles));
-    setIsLoading(false);
-    router.push('/dashboard');
+    let resumeText = '';
+    try {
+      for (const file of selectedFiles) {
+        try {
+          const arrayBuffer = await readFileAsArrayBuffer(file);
+          const text = await extractTextFromPDF(arrayBuffer);
+          resumeText += text + '\n';
+        } catch (fileError) {
+          console.error('Error processing file:', fileError);
+        }
+      }
+      console.log(resumeText);
+      router.push('/dashboard');
+    } catch (error) {
+      console.error('Error during resume processing:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const stepComponents: any = {
@@ -99,7 +115,7 @@ const OnboardTitle = ({
   );
 };
 
-const GitHub = ({ setData }) => {
+const GitHub = ({ setData }: { setData: Function }) => {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
   const [username, setUsername] = useState<string>('');
   const [isRepoFetched, setIsRepoFetched] = useState(false);
@@ -121,6 +137,8 @@ const GitHub = ({ setData }) => {
       console.error('Failed to fetch repos:', error);
     }
   };
+
+  useEffect(() => setData(repos), [repos]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -178,7 +196,7 @@ const GitHub = ({ setData }) => {
   );
 };
 
-const Resume = ({ setData }) => {
+const Resume = ({ setData }: { setData: Function }) => {
   const inputRef = useRef<any>(null);
   const [files, setFiles] = useState<any>([]);
 
@@ -186,13 +204,13 @@ const Resume = ({ setData }) => {
     e.preventDefault();
     console.log('File has been added');
     if (e.target.files && e.target.files[0]) {
-      console.log(e.target.files);
       for (let i = 0; i < e.target.files['length']; i++) {
         setFiles((prevState: any) => [...prevState, e.target.files[i]]);
       }
-      setData(files);
     }
   }
+
+  useEffect(() => setData(files), [files]);
 
   function handleDrop(e: any) {
     e.preventDefault();
