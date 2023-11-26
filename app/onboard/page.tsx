@@ -36,7 +36,8 @@ export default function Onboard() {
         }
       }
       console.log(resumeText);
-      router.push('/dashboard');
+
+      router.push('/questions');
     } catch (error) {
       console.error('Error during resume processing:', error);
     } finally {

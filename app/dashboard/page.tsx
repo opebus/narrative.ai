@@ -24,12 +24,5 @@ export default function Page() {
     return <Spinner />;
   }
 
-  return (
-    <div>
-      This is the main page
-      <div>
-        <UserButton />
-      </div>
-    </div>
-  );
+  return <div>This is the main page</div>;
 }
