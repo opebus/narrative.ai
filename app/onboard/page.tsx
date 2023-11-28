@@ -6,19 +6,49 @@ import { GitHubRepo } from '@/types/repo';
 import { Progress } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import { extractTextFromPDF, readFileAsArrayBuffer } from '@/utils';
+import { useAuth } from '@clerk/nextjs';
 
 export default function Onboard() {
   const router = useRouter();
+  const { userId } = useAuth();
 
   const [onboardingCurrentStep, setOnboardingCurrentStep] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedRepoNames, setSelectedRepoNames] = useState<string[]>([]);
+  const [githubInformation, setGithubInformation] = useState<any>({});
   const [selectedFiles, setSelectedFiles] = useState<any>(null);
 
   const handleRepoSelectionSubmit = async () => {
-    setIsLoading(true);
-    console.log('Selected Repos:', Array.from(selectedRepoNames));
-    setOnboardingCurrentStep(1);
+    // setIsLoading(true);
+    const repoInformation = [];
+    for (const repo of githubInformation.repos) {
+      const response = await fetch(
+        `/api/github/readme?repo=${githubInformation.username}/${repo.project}`
+      );
+      let readme = '';
+      if (response.ok) {
+        const res = await response.json();
+        readme = res.readme;
+      }
+      repoInformation.push({ ...repo, readme });
+    }
+
+    console.log('repoInformation', repoInformation);
+    try {
+      await fetch('/api/prisma/github', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId,
+          username: githubInformation.username,
+          repoInformation,
+        }),
+      });
+      // setOnboardingCurrentStep(1);
+    } catch (error) {
+      console.error('Error updating user:', error);
+    }
     setIsLoading(false);
   };
 
@@ -50,7 +80,7 @@ export default function Onboard() {
       title: 'GitHub Information',
       caption:
         'Provide us with your GitHub information to extract information about your projects',
-      setData: setSelectedRepoNames,
+      setData: setGithubInformation,
       onBoardSubmit: handleRepoSelectionSubmit,
     },
     1: {
@@ -118,8 +148,9 @@ const OnboardTitle = ({
 
 const GitHub = ({ setData }: { setData: Function }) => {
   const [repos, setRepos] = useState<GitHubRepo[]>([]);
-  const [username, setUsername] = useState<string>('');
   const [isRepoFetched, setIsRepoFetched] = useState(false);
+  const [username, setUsername] = useState<string>('');
+  const [repoSelected, setRepoSelected] = useState([]);
 
   const getRepos = async (username: string) => {
     setIsRepoFetched(false);
@@ -139,7 +170,10 @@ const GitHub = ({ setData }: { setData: Function }) => {
     }
   };
 
-  useEffect(() => setData(repos), [repos]);
+  useEffect(
+    () => setData({ repos: repoSelected, username }),
+    [repoSelected, username]
+  );
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -173,7 +207,17 @@ const GitHub = ({ setData }: { setData: Function }) => {
         className='w-full'
         items={repos}
         isDisabled={!isRepoFetched}
-        onSelectionChange={setData}
+        onSelectionChange={(change) => {
+          const newRepoSelected = [];
+          change.forEach((name: string) => {
+            const repo: any = repos.find((repo) => repo.name == name);
+            newRepoSelected.push({
+              projectId: repo.id,
+              project: repo.name,
+            });
+          });
+          setRepoSelected(newRepoSelected);
+        }}
         renderValue={(selectedItems) => (
           <div className='flex flex-wrap gap-2'>
             {selectedItems.map((repoName) => (
