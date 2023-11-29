@@ -1,7 +1,6 @@
 I am pursuing a Master's/Ph.D. because I am passionate about advancing the field of artificial intelligence. My career goal is to become a leading researcher in machine learning, contributing to groundbreaking innovations. The rigorous academic training and research opportunities offered by a graduate program are essential for me to develop the skills and knowledge necessary to achieve these goals.
 
 
-
 My primary research interest lies in the realm of deep learning, particularly in the application of neural networks to natural language processing (NLP). I am fascinated by the potential of machine learning models to understand and generate human language, which has vast implications for AI-driven communication systems. Specifically, I'm interested in exploring transformer models and their capabilities in language translation and sentiment analysis.
 
 

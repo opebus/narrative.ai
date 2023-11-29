@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Tiptap from '@/components/editor/Tiptap';
 import { Spinner } from '@nextui-org/react';
 
@@ -64,13 +64,9 @@ export default function Home() {
   return (
     <div className='min-h-screen flex flex-col items-center text-md mt-20'>
       {isLoading ? (
-        <>
-          <Spinner size='lg' label={label} />
-        </>
+        <Spinner size='lg' label={label} />
       ) : (
-        <>
-          <Tiptap content={responses.join('<br/><br/>')} />
-        </>
+        <Tiptap content={responses.join('<br/><br/>')} />
       )}
     </div>
   );
