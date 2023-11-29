@@ -1,9 +1,12 @@
 import { PrismaClient } from '@prisma/client';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
-export async function GET({ params }: { params: { userId: string } }) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { userId: string } }
+) {
   try {
     const userId = params.userId;
 
