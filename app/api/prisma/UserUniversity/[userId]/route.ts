@@ -1,15 +1,11 @@
 import { PrismaClient } from '@prisma/client';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { slug: string } }
-) {
+export async function GET({ params }: { params: { userId: string } }) {
   try {
-    const userId = params.slug;
-    console.log('userId', userId);
+    const userId = params.userId;
 
     if (!userId || typeof userId !== 'string') {
       return NextResponse.error('Invalid or missing user ID', 400);

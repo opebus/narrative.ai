@@ -40,6 +40,7 @@ const professorData = [
       'His research focuses on developing machine learning and signal processing algorithms to make sense of data in neuroscience and healthcare. He is particularly interested in understanding how the brain processes information and how to design personalized treatments for patients with neurological disorders.	',
   },
 ];
+
 export default function UniversityProfile() {
   const [selectedProfessor, setSelectedProfessor] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -109,8 +110,11 @@ export default function UniversityProfile() {
             <ModalContent>
               <ModalHeader>{selectedProfessor.name}</ModalHeader>
               <ModalBody>{selectedProfessor.researchFocus}</ModalBody>
-              <ModalFooter>
-                <Button color='error' auto onPress={handleCloseModal}>
+              <ModalFooter className='flex justify-between align-center'>
+                <Button color='primary' auto onPress={() => {}}>
+                  Email
+                </Button>
+                <Button color='secondary' auto onPress={handleCloseModal}>
                   Close
                 </Button>
               </ModalFooter>
