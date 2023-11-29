@@ -45,7 +45,7 @@ export default function Onboard() {
           repoInformation,
         }),
       });
-      // setOnboardingCurrentStep(1);
+      setOnboardingCurrentStep(1);
     } catch (error) {
       console.error('Error updating user:', error);
     }
@@ -66,6 +66,19 @@ export default function Onboard() {
         }
       }
       console.log(resumeText);
+
+      // Send the resume text to the backend
+      await fetch('/api/prisma/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId,
+          fieldName: 'CVText',
+          fieldValue: resumeText,
+        }),
+      });
 
       router.push('/questions');
     } catch (error) {

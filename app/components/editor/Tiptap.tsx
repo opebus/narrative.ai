@@ -121,7 +121,7 @@ const Tiptap: React.FC<TiptapProps> = ({ content }) => {
       )}
       <EditorContent
         editor={editor}
-        className='min-w-[768px] w-[768px] h-[1000px] mx-auto p-12 bg-white shadow-lg rounded-lg border border-gray-200 focus:outline-none'
+        className='min-w-[768px] w-[768px] min-h-[1000px] mx-auto p-12 bg-white shadow-lg rounded-lg border border-gray-200 focus:outline-none'
       />
 
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>

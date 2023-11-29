@@ -1,8 +1,35 @@
 'use client';
 import React, { useState } from 'react';
 import { Button, Textarea } from '@nextui-org/react';
-import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@clerk/nextjs';
+
+const fieldInfo = {
+  field1: {
+    label: 'Why are you doing a MS/Ph.D.?',
+    placeholder: 'Why do you need it? What are your career goals?',
+  },
+  field2: {
+    label: 'What is your research interest?',
+    placeholder:
+      'What is an idea in your field that turns you on intellectually? Provide 3 main focus of your research are',
+  },
+  field3: {
+    label: 'What previous research have you done?',
+    placeholder:
+      'What was the problem you were trying to solve? Why was it important? What approaches did you try?',
+  },
+  field4: {
+    label: 'What is your background? (academic and professional)',
+    placeholder:
+      'why interest in your major? share specific classes, accomplishments, activities (skills/qualities), work experiences, etc. Anything that shows you can succeed in grad school',
+  },
+  writingSample: {
+    label: 'Provide a sample of your writing so we can match your style',
+    placeholder:
+      'I am graduating from the University of California, Berkeley with a B.A. in Computer Science...',
+  },
+};
 
 const CustomTextarea = ({
   label,
@@ -15,6 +42,7 @@ const CustomTextarea = ({
     <Textarea
       isRequired
       label={label}
+      variant='bordered'
       labelPlacement='outside'
       placeholder={placeholder}
       size='lg'
@@ -28,13 +56,14 @@ const CustomTextarea = ({
 
 export default function Page() {
   const router = useRouter();
-  const { user } = useUser();
+  const { userId } = useAuth();
 
   const [fields, setFields] = useState({
     field1: { value: '', error: '' },
     field2: { value: '', error: '' },
     field3: { value: '', error: '' },
     field4: { value: '', error: '' },
+    writingSample: { value: '', error: '' }, // Renamed for clarity
   });
 
   const setFieldValue = (field, value) => {
@@ -51,7 +80,7 @@ export default function Page() {
     }));
   };
 
-  const onFinalSubmit = () => {
+  const onFinalSubmit = async () => {
     let isValid = true;
 
     Object.keys(fields).forEach((field) => {
@@ -70,69 +99,69 @@ export default function Page() {
       return;
     }
 
-    user?.update({
-      unsafeMetadata: {
-        onboarded: true,
-      },
+    const answers = {};
+    Object.keys(fields).forEach((field, index) => {
+      // Assuming the fields are in the same order as the questions
+      answers[index + 1] = fields[field].value;
     });
 
-    router.push('/choose');
+    try {
+      const response = await fetch('/api/prisma/questions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: userId, answers }),
+      });
+      const data = await response.json();
+      if (response.ok) {
+        console.log('Success:', data);
+
+        router.push('/choose');
+      } else {
+        console.error('Error:', data);
+      }
+    } catch (error) {
+      console.error('Error submitting answers:', error);
+    }
   };
 
   return (
     <div className='flex flex-col items-center w-full'>
-      <h1 className='text-3xl mt-20 mb-10 text-center font-serif'>
+      <h1 className='text-5xl mt-20 mb-10 text-center font-serif'>
         Help Narrative AI understand you better
       </h1>
 
-      <p className='text-gray-400 mb-10'>
+      <p className='text-gray-400 mb-28'>
         Answer in 3-5 sentences and think carefully. You may edit your answers
         later
       </p>
 
-      <div className='flex flex-col items-center space-y-6 w-full px-10'>
-        <CustomTextarea
-          label='Why are you doing a MS/Ph.D.?'
-          placeholder='Why do you need it? What are your career goals?'
-          value={fields.field1.value}
-          setValue={(value) => setFieldValue('field1', value)}
-          errorMessage={fields.field1.error}
-        />
-        <CustomTextarea
-          label='What is your research interest?'
-          placeholder='What is an idea in your field that turns you on intellectually? Provide 3 main focus of your research are'
-          value={fields.field2.value}
-          setValue={(value) => setFieldValue('field2', value)}
-          errorMessage={fields.field2.error}
-        />
-        <CustomTextarea
-          label='What previous research have you done?'
-          placeholder='What was the problem you were trying to solve? Why was it important? What approaches did you try?'
-          value={fields.field3.value}
-          setValue={(value) => setFieldValue('field3', value)}
-          errorMessage={fields.field3.error}
-        />
-        <CustomTextarea
-          label='What is your background? (academic and professional)'
-          placeholder='why interest in your major? share specific classes, accomplishments, activities (skills/qualities), work experiences, etc. Anything that shows you can succeed in grad school'
-          value={fields.field4.value}
-          setValue={(value) => setFieldValue('field4', value)}
-          errorMessage={fields.field4.error}
-        />
-        <Textarea
-          label='Provide a sample of your writing so we can match your style'
-          labelPlacement='outside'
-          placeholder='I am graduating from the University of California, Berkeley with a B.A. in Computer Science. I am interested in pursuing a Ph.D. in Computer Science because I want to become a professor and teach computer science at the university level...'
-          size='lg'
-          className='max-w-3xl'
-        />
-        <Button
-          onClick={onFinalSubmit}
-          className='mt-10 mb-32 bg-teal-800 hover:bg-teal-950 text-white font-bold px-4 py-4 rounded'
-          variant='solid'
-        >
-          Submit
-        </Button>
+      <div className='flex flex-col items-center space-y-10 w-full px-10 mb-20'>
+        <div className='flex flex-col items-center space-y-10 w-full px-10 mb-20'>
+          {Object.entries(fields).map(([key, field]) => {
+            const { label, placeholder } = fieldInfo[key];
+            return (
+              <CustomTextarea
+                key={key}
+                label={label}
+                placeholder={placeholder}
+                value={field.value}
+                setValue={(value) => setFieldValue(key, value)}
+                errorMessage={field.error}
+              />
+            );
+          })}
+
+          <Button
+            onClick={onFinalSubmit}
+            className='m-20 bg-teal-800 hover:bg-teal-950 text-white font-bold px-4 py-4 rounded'
+            variant='solid'
+            size='lg'
+          >
+            Submit
+          </Button>
+        </div>
       </div>
     </div>
   );
