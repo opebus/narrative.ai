@@ -31,7 +31,7 @@ const samplePrompts = [
 ];
 
 export default function Home() {
-  const [responses, setResponses] = useState(new Array(6).fill('sdfsdfsdfsd'));
+  const [responses, setResponses] = useState(new Array(6).fill(''));
   const [isLoading, setIsLoading] = useState(true);
   const [label, setLabel] = useState('');
   const { userId } = useAuth();
