@@ -36,6 +36,18 @@ export default function Dashboard() {
     }
   }, [userId]);
 
+  const getImagePath = (uniName) => {
+    const name = uniName.toLowerCase();
+    if (name.includes('harvard')) {
+      return '/images/harvard.png';
+    } else if (name.includes('berkeley')) {
+      return '/images/berkeley.png';
+    } else if (name.includes('california')) {
+      return '/images/caltech.png';
+    }
+    return '/images/default.png'; // default image if no match
+  };
+
   const SkeletonComponent = () => (
     <div className='gap-2 grid sm:grid-cols-3 w-full px-10 md:px-32'>
       {Array(3)
@@ -81,7 +93,7 @@ export default function Dashboard() {
                   radius='lg'
                   width='100%'
                   alt={uni.name}
-                  src='/images/wave.jpeg' // Replace with actual image source
+                  src={getImagePath(uni.name)}
                 />
               </CardBody>
               <CardFooter className='text-small items-left'>
