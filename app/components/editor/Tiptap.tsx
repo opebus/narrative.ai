@@ -22,12 +22,7 @@ const limit = 5500;
 
 const Tiptap: React.FC<TiptapProps> = ({ content }) => {
   const editor = useEditor({
-    extensions: [
-      CharacterCount.configure({
-        limit,
-      }),
-      StarterKit,
-    ],
+    extensions: [CharacterCount, StarterKit],
     editorProps: {
       attributes: {
         class: 'focus:outline-none',
@@ -84,9 +79,9 @@ const Tiptap: React.FC<TiptapProps> = ({ content }) => {
         throw new Error('Network response was not ok: ' + response.statusText);
       }
 
-      const data = await response.text();
+      const data = await response.json();
       setIsLoading(false);
-      setRewrittenContent(data); // Assuming 'data' is the new text
+      setRewrittenContent(data.message);
       setShowConfirmation(true);
     } catch (error) {
       setIsLoading(false);

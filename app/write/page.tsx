@@ -77,6 +77,8 @@ export default function Home() {
         // Combine these responses
         const combinedContent = individualResponses.join('<br/><br/>');
 
+        console.log('combinedContent', combinedContent);
+
         // Update the writeIntro prompt with the combined responses
         const introPrompt = writeIntro(userCV, combinedContent);
 
@@ -84,19 +86,14 @@ export default function Home() {
         // Fetch the response for the updated intro prompt
         const introResponse = await fetchData(introPrompt);
 
-        // Combine the introduction with the earlier responses
-        const completeSOP = [introResponse, ...individualResponses].join(
-          '<br/><br/>'
-        );
+        console.log('introResponse', introResponse);
 
-        // Save the complete SOP
-        await saveSOP(completeSOP);
-
-        // Set the responses state
         setResponses([introResponse, ...individualResponses]);
       } catch (error) {
         console.error('Error in fetching data:', error);
       } finally {
+        // add a delay
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         setIsLoading(false);
       }
     };

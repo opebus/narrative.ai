@@ -139,11 +139,11 @@ Instructions:
 - Highlight the most compelling reasons for choosing the university, based on the provided data.
 - Focus on the alignment between the candidate’s research interests and the expertise of specific faculty members.
 - Ensure the content is succinct and does not exceed 150 words for clarity and impact.
-- Please infer the university name from the university data and use it in the response. I don't want Univesrtiy of XYZ, it has to be a specific university name.
+- Please infer the university name from the university data and use it in the response. Look at the university data for name, and use that. DON'T MAKE THINGS UP
 - make sure to include the line breaks <br/> and asterisks <b> in the final output
 
 <FORMAT>
-<b>Why University Name</b>: My decision to apply to [university name] for the CS PhD program is rooted in my passion for [research interest]. The work of [faculty member 1], particularly in [specific research area], aligns with my interest in [related research topic]. Additionally, [faculty member 2]'s contributions to [another research area] resonate with my goals of [relevant career objective]. Moreover, [faculty member 3]'s expertise in [additional research area] offers valuable insights into [related field], further enhancing my research potential.
+<b>Why Cornell</b>: My decision to apply to Cornell University for the CS PhD program is rooted in my passion for [research interest]. The work of [faculty member 1], particularly in [specific research area], aligns with my interest in [related research topic]. Additionally, [faculty member 2]'s contributions to [another research area] resonate with my goals of [relevant career objective]. Moreover, [faculty member 3]'s expertise in [additional research area] offers valuable insights into [related field], further enhancing my research potential.
 </FORMAT>
 `;
 }
