@@ -143,7 +143,7 @@ Instructions:
 - make sure to include the line breaks <br/> and asterisks <b> in the final output
 
 <FORMAT>
-<b>Why Cornell</b>: My decision to apply to Cornell University for the CS PhD program is rooted in my passion for [research interest]. The work of [faculty member 1], particularly in [specific research area], aligns with my interest in [related research topic]. Additionally, [faculty member 2]'s contributions to [another research area] resonate with my goals of [relevant career objective]. Moreover, [faculty member 3]'s expertise in [additional research area] offers valuable insights into [related field], further enhancing my research potential.
+<b>Why Harvard </b>: My decision to apply to Harvard University for the CS PhD program is rooted in my passion for [research interest]. The work of [faculty member 1], particularly in [specific research area], aligns with my interest in [related research topic]. Additionally, [faculty member 2]'s contributions to [another research area] resonate with my goals of [relevant career objective]. Moreover, [faculty member 3]'s expertise in [additional research area] offers valuable insights into [related field], further enhancing my research potential.
 </FORMAT>
 `;
 }
