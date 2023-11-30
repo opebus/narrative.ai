@@ -61,7 +61,6 @@ const Tiptap: React.FC<TiptapProps> = ({ content }) => {
 
   const handleRewrite = useCallback(async () => {
     setIsLoading(true);
-    onOpenChange(false);
 
     if (!selectedText) {
       setIsLoading(false);
@@ -150,8 +149,7 @@ const Tiptap: React.FC<TiptapProps> = ({ content }) => {
             <ModalBody>
               <p>You selected: {selectedText}</p>
               <Input
-                clearable
-                bordered
+                isClearable
                 fullWidth
                 size='lg'
                 placeholder='What do you want to change?'
@@ -160,16 +158,10 @@ const Tiptap: React.FC<TiptapProps> = ({ content }) => {
               />
             </ModalBody>
             <ModalFooter>
-              <NextUIButton
-                color='error'
-                auto
-                onPress={() => onOpenChange(false)}
-              >
+              <NextUIButton color='danger' onPress={() => onOpenChange()}>
                 Cancel
               </NextUIButton>
-              <NextUIButton auto onPress={handleRewrite}>
-                Submit
-              </NextUIButton>
+              <NextUIButton onPress={handleRewrite}>Submit</NextUIButton>
             </ModalFooter>
           </>
         </ModalContent>
@@ -190,10 +182,10 @@ const Tiptap: React.FC<TiptapProps> = ({ content }) => {
               <p>Modified Text:</p>
               <div dangerouslySetInnerHTML={{ __html: rewrittenContent }} />
               <div className='flex justify-between space-x-4'>
-                <NextUIButton auto onPress={handleAcceptRewrite}>
+                <NextUIButton onPress={handleAcceptRewrite}>
                   Accept
                 </NextUIButton>
-                <NextUIButton auto color='error' onPress={handleCancelRewrite}>
+                <NextUIButton color='danger' onPress={handleCancelRewrite}>
                   Cancel
                 </NextUIButton>
               </div>

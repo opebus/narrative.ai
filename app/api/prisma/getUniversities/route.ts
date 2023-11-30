@@ -1,10 +1,9 @@
-import { NextApiRequest } from 'next';
 import { PrismaClient } from '@prisma/client';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextApiRequest) {
+export async function GET(req: NextRequest) {
   try {
     const universities = await prisma.university.findMany({
       select: {

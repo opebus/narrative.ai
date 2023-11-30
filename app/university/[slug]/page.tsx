@@ -112,10 +112,10 @@ export default function UniversityProfile() {
               <ModalHeader>{selectedProfessor.name}</ModalHeader>
               <ModalBody>{selectedProfessor.researchFocus}</ModalBody>
               <ModalFooter className='flex justify-between align-center'>
-                <Button color='primary' auto onPress={() => {}}>
+                <Button color='primary' onPress={() => {}}>
                   Email
                 </Button>
-                <Button color='secondary' auto onPress={handleCloseModal}>
+                <Button color='secondary' onPress={handleCloseModal}>
                   Close
                 </Button>
               </ModalFooter>

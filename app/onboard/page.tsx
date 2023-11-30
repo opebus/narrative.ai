@@ -222,13 +222,18 @@ const GitHub = ({ setData }: { setData: Function }) => {
         isDisabled={!isRepoFetched}
         onSelectionChange={(change) => {
           const newRepoSelected = [];
-          change.forEach((name: string) => {
-            const repo: any = repos.find((repo) => repo.name == name);
-            newRepoSelected.push({
-              projectId: repo.id,
-              project: repo.name,
+          if (change instanceof Set) {
+            change.forEach((name: string) => {
+              const repo: any = repos.find((repo) => repo.name === name);
+              newRepoSelected.push({
+                projectId: repo.id,
+                project: repo.name,
+              });
             });
-          });
+          } else {
+            // Handle the case where change is a string
+            // This depends on your application logic
+          }
           setRepoSelected(newRepoSelected);
         }}
         renderValue={(selectedItems) => (

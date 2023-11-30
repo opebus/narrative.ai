@@ -11,7 +11,10 @@ export async function GET(
     const userId = params.userId;
 
     if (!userId || typeof userId !== 'string') {
-      return NextResponse.error('Invalid or missing user ID', 400);
+      return NextResponse.json(
+        { error: 'Invalid or missing user ID' },
+        { status: 400 }
+      );
     }
 
     // Retrieve university IDs associated with the user
@@ -29,6 +32,9 @@ export async function GET(
 
     return NextResponse.json(universities);
   } catch (error) {
-    return NextResponse.error('Internal server error', 500);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
   }
 }

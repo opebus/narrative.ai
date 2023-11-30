@@ -39,18 +39,15 @@ export default function Dashboard() {
   const SkeletonComponent = () => (
     <div className='gap-2 grid sm:grid-cols-3 w-full px-10 md:px-32'>
       {Array(3)
-        .fill()
+        .fill('')
         .map((_, index) => (
           <Card key={index} shadow='sm' className='mb-10'>
             <Skeleton className='rounded-lg'>
               <div className='h-40 rounded-lg bg-default-300'></div>{' '}
-              {/* Mimic image size */}
             </Skeleton>
             <Skeleton className='rounded-lg p-4'>
               <div className='h-5 bg-default-200 rounded-lg mb-2'></div>{' '}
-              {/* Mimic title size */}
               <div className='h-3 bg-default-200 rounded-lg'></div>{' '}
-              {/* Mimic subtitle or footer */}
             </Skeleton>
           </Card>
         ))}

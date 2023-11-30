@@ -1,3 +1,4 @@
+import { NextRequest } from 'next/server';
 import OpenAI from 'openai';
 
 export const runtime = 'edge';
@@ -6,7 +7,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-export async function POST(req) {
+export async function POST(req: NextRequest) {
   try {
     const { messages } = await req.json();
 

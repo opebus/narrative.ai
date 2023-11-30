@@ -33,17 +33,8 @@ const samplePrompts = [
 export default function Home() {
   const [responses, setResponses] = useState(new Array(6).fill('sdfsdfsdfsd'));
   const [isLoading, setIsLoading] = useState(true);
-<<<<<<< Updated upstream
   const [label, setLabel] = useState('');
   const { userId } = useAuth();
-=======
-  const [isGeneratingFinal, setIsGeneratingFinal] = useState(false);
-  const responsesRef = useRef(responses);
-
-  useEffect(() => {
-    responsesRef.current = responses;
-  }, [responses]);
->>>>>>> Stashed changes
 
   useEffect(() => {
     const saveSOP = async (sopText) => {
