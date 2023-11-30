@@ -50,7 +50,14 @@ export default function Nav() {
       <NavbarContent justify='end'>
         <NavbarItem>
           <SignedIn>
-            <UserButton signInUrl='/' afterSignOutUrl='/' />
+            <div className='flex space-x-10'>
+              <Link color='foreground' href='/dashboard'>
+                <Button className='bg-teal-800 hover:bg-teal-950 text-white'>
+                  Dashboard
+                </Button>
+              </Link>
+              <UserButton signInUrl='/' afterSignOutUrl='/' />
+            </div>
           </SignedIn>
           <SignedOut>
             <div className='flex gap-4'>

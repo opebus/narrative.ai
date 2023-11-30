@@ -17,121 +17,109 @@ export function rewriteInUserStyle(userSOP, userStyle) {
 
 export function writeIntro(userCV, userSOP) {
   return `
-Given the information about the user, craft a concise yet impactful introduction for a PhD application SoP. The introduction must strictly adhere to the provided format and effectively incorporate details from the user's CV, SoP, and personal writing style. Focus on seamlessly integrating these elements to create a coherent and compelling narrative that reflects the candidate's unique profile.
+Given the user's CV and SoP, craft a succinct introduction for a PhD application SoP, adhering to the format and blending in key details from the CV and SoP. The final introduction must be concise and impactful, not exceeding 80 words.
 
 User Information:
 - CV: ${userCV}
 - SOP: ${userSOP}
 
-Please follow the instructions below to complete the task:
-- Use the information from the user's CV and SOP to fill in the brackets in the format. Be precise and relevant.
-- Maintain the writing style indicated in the 'User Style Snippet' to ensure consistency and authenticity.
-- It is crucial to keep the structure and flow of the format intact while personalizing the content.
-
-The format is given below:
+Instructions:
+- Focus on the most crucial elements from the CV and SoP.
+- Streamline content by combining similar points and using clear, concise language.
+- Ensure the introduction reflects the user's unique profile within the 80-word limit.
 
 <FORMAT>
-Driven by a passion for [area of research], I am eager to join UNIVERSITY_NAME's esteemed PROGRAM_NAME PhD program. My journey, outlined in my CV, includes [key highlights from CV], which aligns seamlessly with my goal to [specific future goal related to the program]. This application is a step towards fulfilling my aspiration of [specific aspiration], a vision shaped by [unique experiences or insights]. I believe that my background in [relevant experience] and my commitment to [specific area of research or goal] uniquely positions me to contribute significantly to [university or specific research group].
+Driven by [area of research], I aim to join UNIVERSITY_NAME's PROGRAM_NAME. Highlighting [key CV highlights], my goal is to [future goal]. Aspiring to [specific aspiration], I've gained [unique experiences]. My expertise in [experience] and dedication to [research/goal] equip me for contributions to [university].
 </FORMAT>
 `;
 }
 
 export function writeResearchInterest(userCV, researchInterestAnswer) {
   return `
-  Given the candidate's background and specific areas of interest, create a detailed yet focused section on their research interests for a PhD SoP. This section should highlight the significance, intellectual merit, and potential impact of their research vision, balancing innovative ideas with practical applications. The writing should match the style of an insightful Ivy League student.
-  
-  User Information:
-  - CV: ${userCV}
-  - Questions Answered: ${researchInterestAnswer}
-  
-  Please follow the instructions below to complete the task:
-  - Ensure the research interests are clearly articulated, relevant to the candidate's background, and aligned with their future goals.
-  - Incorporate specific details and objectives for each research focus area.
-  - Maintain a tone and style that reflects an academically astute candidate, as indicated in the 'User Style Snippet'.
-  
-  The format is given below:
-  
-  <FORMAT>
-  Research Interest: My passion for [interest area] is driven by [reason for interest]. I plan to explore:
-  
-  1. [Research Focus 1]: This area focuses on [specific details about focus area 1], aiming to [specific objective of focus area 1].
-  2. [Research Focus 2]: Here, I will investigate [specific details about focus area 2], which is crucial for [specific objective of focus area 2].
-  3. [Research Focus 3]: This involves [specific details about focus area 3], with the goal of [specific objective of focus area 3].
-  
-  Each domain is interconnected, forming a cohesive vision that addresses [broader impact or relevance of the research].
-  </FORMAT>
-  `;
+Create a section on the candidate's research interests for a PhD SoP, linking their background and interests. The style should reflect an insightful Ivy League student. The section must be detailed yet concise, not exceeding 250 words.
+
+User Information:
+- CV: ${userCV}
+- Questions Answered: ${researchInterestAnswer}
+
+Instructions:
+- Highlight the key research interests derived from the CV and Questions Answered.
+- Ensure each research focus is clearly articulated and relevant to the candidate's background and goals.
+- Use precise and succinct language to convey the research interests within the 250-word limit.
+- make sure to include the line breaks <br/> and bold <b></b> in the final output
+
+<FORMAT>
+<b>Research Interest</b>: My passion lies in [interest area] because [reason for interest]. I aim to explore: <br/>
+1. [Focus 1]: Focusing on [details of focus 1], with the objective to [objective of focus 1]. <br/>
+2. [Focus 2]: Investigating [details of focus 2], crucial for [objective of focus 2]. <br/>
+3. [Focus 3]: Exploring [details of focus 3], targeting [objective of focus 3]. <br/>
+
+These areas represent a unified vision addressing [broader research impact].
+</FORMAT>
+`;
 }
 
 export function writeResearchExperience(userCV, researchExpAnswer) {
   return `
-      Craft a comprehensive yet concise section detailing the candidate's research experience, suitable for a PhD application SoP. This section should illuminate the candidate's ability to identify and tackle complex problems, their methodological approaches, the outcomes of their research, and most importantly, their specific contributions to each project. The style should befit an accomplished Ivy League scholar.
-    
-      User Information:
-      - CV: ${userCV}
-      - Questions Answered: ${researchExpAnswer}
-      
-      Example Cases:
-      - Working with another undergraduate student under the supervision of Dr. Raymond Ng, we set out to address the challenge of how the city of Surrey should place EV charging stations. Prior to our work, the approach to determine where to install an EV charging site was solely based on expert opinions, despite a large volume of data collected by the city of Surrey. To help city planners make strategic decisions informed by evidence, I developed a web application to give them a user-friendly way to explore and make sense of the data. I used interactive maps and graphs to visualize the spatial distribution and time trends of Surrey’s vehicle stock, traffic flows, and land use. In September 2019, the city used my tool to choose 20 charger locations for a Canadian federal funding proposal, and I was proud to co-present this work at the SIGKDD’20 Social Impact Session this summer.
-      - Database users often interact with databases via SQL query sessions. From our analysis, users pose a variety of SQL queries in sequence with changes in SQL keywords and query fragments such as tables and attributes. However, the existing approaches only consider queries individually and make recommendations based on query similarity and popularity. We presented a new approach to recommend query information by learning from the sequential knowledge exploration patterns of historical users. We modelled our query recommendation problem as a query prediction task and used sequence-to-sequence models to predict the next query. Supervised by Dr. Pottinger, this work led to Sequence-Aware Query Recommendation Using Deep Learning, submitted to VLDB’21. As the lead researcher, I identified knowledge gaps in the existing work, defined and scoped the research problem, analyzed the workload data, implemented the deep learning models, ran the experiments, discussed the results, and wrote the paper.
-  
-      Please follow the instructions below to complete the task:
-      - Utilize the provided formula for each project description: summary, clarification of terms (if necessary), the need for the work (e.g., identifying gaps), contributions, outcomes, and the candidate's specific input.
-      - Reference the example cases to understand how to effectively structure and present the research experiences.
-      - Detail the candidate's research experience with clarity and precision, focusing on their role in identifying problems and implementing solutions.
-      - Highlight the methodologies used, the outcomes achieved, and the candidate's specific contributions to each project.
-      - Emphasize the impact of the candidate's work, reflecting on how it contributes to their field.
-      - Adopt a tone and style that showcases academic maturity and intellectual rigor.
-    
-      The format is given below:
-    
-      <FORMAT>
-      Research Experience: In my research on [project topic], I tackled the challenge of [problem addressed]. My approach included [methodology used], leading to [outcome of the research]. In this project, my role was [specific contribution], which significantly contributed to [impact of the work].
-      </FORMAT>
-      `;
+Detail the candidate's research experience for a PhD SoP, focusing on their problem-solving ability, methodologies, outcomes, and contributions. Adopt a tone fitting an Ivy League scholar. The entire section should be comprehensive yet concise, limited to 300 words.
+
+User Information:
+- CV: ${userCV}
+- Questions Answered: ${researchExpAnswer}
+
+Instructions:
+- Summarize each project succinctly, focusing on the key aspects: problem addressed, methodology, outcomes, and specific contributions.
+- Avoid lengthy explanations; instead, provide clear and concise descriptions.
+- Ensure the total word count for this section does not exceed 300 words.
+- make sure to include the line breaks <br/> and asterisks <b> in the final output
+- if the user has multiple research experience, only include <b>Research Experience</b> for the first one, add a <br/> and the research experience without header.
+
+Example:
+- Working with another undergraduate student under the supervision of Dr. Raymond Ng, we set out to address the challenge of how the city of Surrey should place EV charging stations. Prior to our work, the approach to determine where to install an EV charging site was solely based on expert opinions, despite a large volume of data collected by the city of Surrey. To help city planners make strategic decisions informed by evidence, I developed a web application to give them a user-friendly way to explore and make sense of the data. I used interactive maps and graphs to visualize the spatial distribution and time trends of Surrey’s vehicle stock, traffic flows, and land use. In September 2019, the city used my tool to choose 20 charger locations for a Canadian federal funding proposal, and I was proud to co-present this work at the SIGKDD’20 Social Impact Session this summer.
+
+<FORMAT>
+<b>Research Experience</b>: In my research on [project topic], I tackled [problem addressed]. I employed [methodology], achieving [outcome]. My role involved [specific contribution], significantly impacting [impact of the work].
+</FORMAT>
+`;
 }
 
 export function writeAcademicProfessionalSummary(userCV, backgroundAns) {
   return `
-      Create a comprehensive summary of the candidate's academic and professional achievements, tailored for a PhD application. This summary should encapsulate the depth and breadth of their experiences, particularly those relevant to their PhD pursuit. The tone should mirror the eloquence expected of an Ivy League student.
-  
-      User Information:
-      - CV: ${userCV}
-      - Background Data: ${backgroundAns}
-  
-      Please follow these instructions to ensure a high-quality summary:
-      - Extract and emphasize experiences from the CV and background data that are most relevant to the PhD pursuit.
-      - Highlight academic achievements, key professional experiences, and any significant projects or roles that demonstrate the candidate's preparedness for doctoral studies.
-      - Articulate the summary in a manner that showcases the candidate's unique strengths and accomplishments.
-      - Use a writing style that is sophisticated, clear, and reflective of a high-achieving Ivy League student.
-  
-      The format to be used is as follows:
-  
-      <FORMAT>
-      My academic journey at [university name] studying [major/field of study] has been marked by [significant academic achievements]. Professionally, my experience at [company or major project name] has honed my skills in [relevant skills or fields], preparing me for the rigorous challenges of a PhD program. Notable achievements in my career include [key professional accomplishments or contributions].
-      </FORMAT>
-      `;
+Create a concise summary of the candidate's academic and professional achievements, relevant to their PhD application. The tone should be eloquent, as expected of an Ivy League student. Limit the summary to 100 words.
+
+User Information:
+- CV: ${userCV}
+- Background Data: ${backgroundAns}
+
+Instructions:
+- Select only the most notable academic and professional achievements from the CV and Background Data.
+- Ensure the content is succinct and does not exceed 100 words for clarity and impact.
+- Aim to provide a holistic view of the candidate's qualifications in a succinct manner.
+- make sure to include the line breaks <br/> and bold tag <b> in the final output
+
+<FORMAT>
+<b>Academic and Professional Background</b>: I graduated from [university] in [field], achieving [academic achievements]. At [company/project], I developed [skills], preparing for PhD challenges. Key career achievements include [professional accomplishments].
+</FORMAT>
+`;
 }
 
 export function writeWhyPhD(whyPhDAnswers) {
   return `
-      Craft a persuasive section that articulates the candidate's motivation for pursuing a PhD. This section should delve into their passion for research, clearly defined career goals, and how a PhD aligns with and facilitates these aspirations. The tone should be ambitious and reflective of an Ivy League student's aspirations.
-  
-      User Information:
-      - Answers to "Why PhD?" questions: ${whyPhDAnswers}
-      
-      Instructions for crafting this section:
-      - Draw from the provided answers to emphasize the candidate's personal motivations for pursuing a PhD.
-      - Highlight how the PhD aligns with their career goals and aspirations within their chosen field or industry.
-      - Ensure the narrative is compelling, focused, and speaks to the candidate's passion and vision for their future contributions.
-      - Maintain a tone that is ambitious, forward-thinking, and reflective of a high-achieving academic mindset.
-  
-      The format to be followed is:
-  
-      <FORMAT>
-      My decision to pursue a PhD stems from [personal motivation and passion for research]. This path is intrinsically aligned with my career goal of [specific career objective], where I aspire to make significant contributions to [field or industry], particularly in [specific areas or types of contributions].
-      </FORMAT>
-      `;
+Concisely articulate the candidate's motivation for pursuing a PhD, highlighting their research passion and career goals. Maintain an ambitious tone, fitting for an Ivy League aspirant. Keep the response approximately 100 words.
+
+User Information:
+- Answers to "Why PhD?" questions: ${whyPhDAnswers}
+
+Instructions:
+- Focus on the most impactful reasons for pursuing a PhD as indicated in the answers provided.
+- Distill the essence of the candidate's motivation and career aspirations into a brief yet powerful statement.
+- Ensure the entire content does not exceed 100 words for clarity and impact.
+- make sure to include the line breaks <br/> and bold tag <b> in the final output
+
+<FORMAT>
+<b>Why PhD</b>: My decision to pursue a PhD is driven by [motivation for research]. Aligning with my career aim of [career objective], I plan to contribute to [field or industry] by focusing on [specific contributions].
+</FORMAT>
+`;
 }
 
 export function writeWhyUniversity(
@@ -140,25 +128,24 @@ export function writeWhyUniversity(
   researchInterestAnswer
 ) {
   return `
-      Construct a compelling section explaining why the candidate is applying to a specific university. This should highlight the alignment between the candidate's research interests and the university's resources, faculty expertise, and overall academic culture. The tone should be articulate and ambitious, resonating with the aspirations of an Ivy League student.
-  
-      User Information:
-      - University Data: ${universityData}
-      - Data about Professors and their Research Work: ${professorData}
-      - Research Interest Answer: ${researchInterestAnswer}
-  
-      Instructions for this section:
-      - Focus on the specific reasons why the candidate is drawn to this university, citing particular aspects of its academic environment, resources, and faculty.
-      - Clearly link the candidate's research interests with the opportunities and expertise available at the university.
-      - Emphasize how collaboration with named faculty members will facilitate the candidate's research goals and overall academic and professional development.
-      - Ensure the narrative is articulate, demonstrating the candidate's ambition and the strategic thought behind their choice of university.
-  
-      The format to be used is as follows:
-  
-      <FORMAT>
-      My choice of [university name] is influenced by [specific reasons for choosing the university]. Working with [names of faculty members] at [university name] will enable me to [specific research goals and aspirations], aligning perfectly with my academic and professional aspirations.
-      </FORMAT>
-      `;
+Articulate the candidate's reasons for applying to a specific university, focusing on how their interests align with the university's resources and faculty expertise. Maintain an articulate and ambitious tone. Limit the response to 150 words.
+
+User Information:
+- University Data: ${universityData}
+- Data about Professors: ${professorData}
+- Research Interest Answer: ${researchInterestAnswer}
+
+Instructions:
+- Highlight the most compelling reasons for choosing the university, based on the provided data.
+- Focus on the alignment between the candidate’s research interests and the expertise of specific faculty members.
+- Ensure the content is succinct and does not exceed 150 words for clarity and impact.
+- Please infer the university name from the university data and use it in the response. I don't want Univesrtiy of XYZ, it has to be a specific university name.
+- make sure to include the line breaks <br/> and asterisks <b> in the final output
+
+<FORMAT>
+<b>Why University Name</b>: My decision to apply to [university name] for the CS PhD program is rooted in my passion for [research interest]. The work of [faculty member 1], particularly in [specific research area], aligns with my interest in [related research topic]. Additionally, [faculty member 2]'s contributions to [another research area] resonate with my goals of [relevant career objective]. Moreover, [faculty member 3]'s expertise in [additional research area] offers valuable insights into [related field], further enhancing my research potential.
+</FORMAT>
+`;
 }
 
 export const userCV = `Benedict Neo	benedict.neo@outlook.com
@@ -237,7 +224,7 @@ export const backgroundAns = `Graduating with a BS in Statistics and a minor in 
 
 export const whyPhDAnswers = `Pursuing a MS/Ph.D. aligns with my career goal of becoming a research scientist in AI. My experiences at Tesla and in academic research have ignited my passion for solving complex problems and advancing knowledge, making a Ph.D. an essential step towards technological entrepreneurship.`;
 
-const universityData = {
+export const universityData = {
   id: 'a123b456-78cd-90ef-gh12-34ij56kl789m',
   name: 'Cornell University',
   info: "Cornell University's Computer Science PhD program is renowned for its comprehensive curriculum and distinguished faculty. The program emphasizes interdisciplinary research and collaboration across various areas of computer science. Students are encouraged to engage in innovative research projects, contributing to advancements in fields like natural language processing, machine learning, and AI.",
@@ -246,7 +233,7 @@ const universityData = {
   submissionDeadline: '2023-01-15',
 };
 
-const professorData = [
+export const professorData = [
   {
     id: '00112233-4455-6677-8899-aabbccddeeff',
     name: 'Alexander Rush',
@@ -268,11 +255,3 @@ const professorData = [
 ];
 
 export const userStyle = `I am graduating from Iowa State University with a BS in Statistics and a minor in Computer Science. My academic and professional journey has been characterized by a strong foundation in statistical analysis, machine learning, and data science, complemented by practical applications in predictive modeling and NLP.`;
-
-writeIntro(userCV, userSOP);
-writeResearchInterest(userCV, researchInterestAnswer);
-writeResearchExperience(userCV, researchExpAnswer);
-writeAcademicProfessionalSummary(userCV, backgroundAns);
-writeWhyPhD(whyPhDAnswers);
-writeWhyUniversity(universityData, professorData, researchInterestAnswer);
-rewriteInUserStyle(userSOP, userStyle);

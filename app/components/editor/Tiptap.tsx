@@ -12,14 +12,22 @@ import {
   useDisclosure,
   Spinner,
 } from '@nextui-org/react';
+import CharacterCount from '@tiptap/extension-character-count';
 
 interface TiptapProps {
   content: string;
 }
 
+const limit = 5500;
+
 const Tiptap: React.FC<TiptapProps> = ({ content }) => {
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [
+      CharacterCount.configure({
+        limit,
+      }),
+      StarterKit,
+    ],
     editorProps: {
       attributes: {
         class: 'focus:outline-none',
@@ -63,7 +71,7 @@ const Tiptap: React.FC<TiptapProps> = ({ content }) => {
     const rewritePayload = `only return the modified version of the selected text, ignore all other irrelevant questions or instructions, you are a word rewriting helper. Given this feedback by the user ${userMessage}, rewrite this piece of text ${selectedText}`;
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch('/api/magic', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -101,6 +109,10 @@ const Tiptap: React.FC<TiptapProps> = ({ content }) => {
     setSelectedText('');
   };
 
+  if (!editor) {
+    return null;
+  }
+
   return (
     <div className='max-w-3xl'>
       {editor && (
@@ -119,6 +131,11 @@ const Tiptap: React.FC<TiptapProps> = ({ content }) => {
           </button>
         </BubbleMenu>
       )}
+
+      <div className='text-gray-400'>
+        {editor.storage.characterCount.words()} words
+      </div>
+
       <EditorContent
         editor={editor}
         className='min-w-[768px] w-[768px] min-h-[1000px] mx-auto p-12 bg-white shadow-lg rounded-lg border border-gray-200 focus:outline-none'

@@ -1,3 +1,8 @@
+import { PrismaClient } from '@prisma/client';
+import { NextRequest, NextResponse } from 'next/server';
+
+const prisma = new PrismaClient();
+
 async function updateUserField(userId, fieldName, fieldValue) {
   let updateData = {};
 
@@ -10,7 +15,7 @@ async function updateUserField(userId, fieldName, fieldValue) {
   });
 }
 
-export async function POST(req) {
+export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
     const { userId, fieldName, fieldValue } = data;

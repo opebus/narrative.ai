@@ -21,7 +21,7 @@ const Page = () => {
           Supercharge Your Grad School Application
         </h1>
         <p className='text-md sm:text-lg text-gray-600 mb-10 text-center font-sans font-light'>
-          Craft the perfect Statement of Purpose with Narrative AI
+          Craft the perfect Statement of Purpose with Narrative AI ✨
         </p>
         <SignUpButton mode='modal' redirectUrl='/onboard'>
           <Button
@@ -71,7 +71,11 @@ const Page = () => {
                 title='Does Narrative use GPT-4?'
                 className='text-gray-500'
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                Yes, Narrative extensively utilizes GPT-4. GPT-4 offers advanced
+                language understanding and generation capabilities, making it
+                ideal for creating engaging and coherent narratives. Its ability
+                to process and generate human-like text allows for a wide range
+                of applications in content creation, customer service, and more.
               </AccordionItem>
               <AccordionItem
                 key='2'
@@ -79,7 +83,14 @@ const Page = () => {
                 title='What is a good SoP?'
                 className='text-gray-500'
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                A good Statement of Purpose (SoP) effectively communicates your
+                goals, experiences, and motivations for pursuing a particular
+                academic or professional path. It should be well-structured,
+                concise, and personalized, reflecting your unique journey and
+                aspirations. A compelling SoP not only outlines your academic
+                and professional achievements but also demonstrates your
+                potential contribution to the program and how it aligns with
+                your career objectives
               </AccordionItem>
               <AccordionItem
                 key='3'
@@ -87,7 +98,13 @@ const Page = () => {
                 title='Does this violate university policy'
                 className='text-gray-500'
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                Using AI tools like GPT-4 for educational purposes does not
+                inherently violate university policies. However, it's crucial to
+                adhere to academic integrity guidelines. This means using AI as
+                a supplementary tool for learning and idea generation, rather
+                than for plagiarism or misrepresentation of your own abilities.
+                Always consult your university's specific policies and
+                guidelines to ensure compliance
               </AccordionItem>
             </Accordion>
           </div>

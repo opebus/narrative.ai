@@ -6,18 +6,23 @@ export default function Bento() {
     <div className='grid grid-cols-1 sm:grid-cols-2 gap-8 px-12 md:px-32 xl:px-64 2xl:px-96 font-serif'>
       <Card shadow='sm' className='col-span-1'>
         <CardBody className='overflow-visible p-0'>
-          <Image shadow='sm' radius='lg' width='100%' src='/images/wave.jpeg' />
+          <Image
+            shadow='sm'
+            radius='lg'
+            width='100%'
+            src='/images/letter.png'
+          />
         </CardBody>
         <CardFooter className='text-small flex flex-col items-start'>
           <b className='text-lg'>Full SoP letter generated</b>
           <p className='text-default-500'>
-            A fully comprehensive SoP generated to get rid of the blank canvas
+            A comprehensive SoP generated. No more blank canvas!
           </p>
         </CardFooter>
       </Card>
       <Card shadow='sm' className='col-span-1 '>
         <CardBody className='overflow-visible p-0'>
-          <Image shadow='sm' radius='lg' width='100%' src='/images/wave.jpeg' />
+          <Image shadow='sm' radius='lg' width='100%' src='/images/write.png' />
         </CardBody>
         <CardFooter className='text-small flex flex-col items-start'>
           <b className='text-lg'>Paraphrase & Rewrite</b>
@@ -28,10 +33,15 @@ export default function Bento() {
       </Card>
       <Card shadow='sm' className='col-span-1'>
         <CardBody className='overflow-visible p-0'>
-          <Image shadow='sm' radius='lg' width='100%' src='/images/wave.jpeg' />
+          <Image
+            shadow='sm'
+            radius='lg'
+            width='100%'
+            src='/images/people.png'
+          />
         </CardBody>
         <CardFooter className='text-small flex flex-col items-start'>
-          <b className='text-lg'>Professors and Students library</b>
+          <b className='text-lg'>Professors Library</b>
           <p className='text-default-500'>
             A database of top researchers in the field
           </p>
@@ -39,7 +49,12 @@ export default function Bento() {
       </Card>
       <Card shadow='sm' className='col-span-1'>
         <CardBody className='overflow-visible p-0'>
-          <Image shadow='sm' radius='lg' width='100%' src='/images/wave.jpeg' />
+          <Image
+            shadow='sm'
+            radius='lg'
+            width='100%'
+            src='/images/university.png'
+          />
         </CardBody>
         <CardFooter className='text-small flex flex-col items-start'>
           <b className='text-lg'>University library</b>

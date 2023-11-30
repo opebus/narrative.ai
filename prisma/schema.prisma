@@ -65,12 +65,7 @@ model Professor {
 model SOP {
   id              String  @id @default(uuid())
   userId          String
-  intro           String?
-  researchInt     String?
-  researchExp     String?
-  acadProfSummary String?
-  whyPhD          String?
-  whyUni          String?
+  text            String?
   user            User    @relation(fields: [userId], references: [id])
 }
 

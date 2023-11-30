@@ -57,7 +57,8 @@ export default function UniversityProfile() {
   };
 
   const handleSopClick = () => {
-    router.push(`/write/${universityData.id}`);
+    //router.push(`/write/${universityData.id}`);
+    router.push(`/write`);
   };
 
   return (
