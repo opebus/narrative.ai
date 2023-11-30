@@ -64,7 +64,7 @@ export default function UniversityTable() {
     console.log('Selected Universities submitted: ', selectedUni);
     console.log('Selected Universities: ', selectedUni);
 
-    user?.update({
+    await user?.update({
       unsafeMetadata: {
         onboarded: true,
       },

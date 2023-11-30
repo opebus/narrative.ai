@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
-import Tiptap from '@/components/editor/Tiptap';
+import Tiptap from '@/app/components/editor/Tiptap';
 import { Spinner } from '@nextui-org/react';
 
 import {

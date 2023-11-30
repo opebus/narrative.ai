@@ -1,5 +1,5 @@
-import { GITHUB_API_URL } from '@/constants/constant';
-import { GitHubRepo } from '@/types/repo';
+import { GITHUB_API_URL } from '@/app/constants/constant';
+import { GitHubRepo } from '@/app/types/repo';
 import { compareDesc } from 'date-fns';
 import { NextRequest } from 'next/server';
 

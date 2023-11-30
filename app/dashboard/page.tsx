@@ -3,13 +3,21 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardBody, CardFooter, Image, Skeleton } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@clerk/nextjs';
+import { useAuth, useUser } from '@clerk/nextjs';
 
 export default function Dashboard() {
   const [universities, setUniversities] = useState([]);
   const [loading, setLoading] = useState(true);
   const { userId } = useAuth();
+  const { user } = useUser();
+
   const router = useRouter();
+
+  useEffect(() => {
+    if (!user.unsafeMetadata.onboarded) {
+      router.push('/onboard');
+    }
+  }, [user]);
 
   useEffect(() => {
     async function fetchUniversities() {
@@ -45,23 +53,22 @@ export default function Dashboard() {
     } else if (name.includes('california')) {
       return '/images/caltech.png';
     }
-    return '/images/default.png'; // default image if no match
+    return '/images/wave.jpeg';
   };
 
   const SkeletonComponent = () => (
     <div className='gap-2 grid sm:grid-cols-3 w-full px-10 md:px-32'>
       {Array(3)
         .fill('')
-        .map((_, index) => (
-          <Card key={index} shadow='sm' className='mb-10'>
+        .map((_) => (
+          <>
             <Skeleton className='rounded-lg'>
-              <div className='h-40 rounded-lg bg-default-300'></div>{' '}
+              <div className='h-40 rounded-lg bg-default-300' />
             </Skeleton>
             <Skeleton className='rounded-lg p-4'>
-              <div className='h-5 bg-default-200 rounded-lg mb-2'></div>{' '}
-              <div className='h-3 bg-default-200 rounded-lg'></div>{' '}
+              <div className='h-3 bg-default-200 rounded-lg' />
             </Skeleton>
-          </Card>
+          </>
         ))}
     </div>
   );
@@ -90,8 +97,6 @@ export default function Dashboard() {
               <CardBody className='overflow-visible p-0'>
                 <Image
                   shadow='sm'
-                  radius='lg'
-                  width='100%'
                   alt={uni.name}
                   src={getImagePath(uni.name)}
                 />

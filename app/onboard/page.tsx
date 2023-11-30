@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Select, SelectItem, Chip, Input, Button } from '@nextui-org/react';
-import { GitHubRepo } from '@/types/repo';
+import { GitHubRepo } from '@/app/types/repo';
 import { Progress } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
-import { extractTextFromPDF, readFileAsArrayBuffer } from '@/utils';
+import { extractTextFromPDF, readFileAsArrayBuffer } from '@/app/utils';
 import { useAuth } from '@clerk/nextjs';
 
 export default function Onboard() {
