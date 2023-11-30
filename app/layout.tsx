@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 import './globals.css';
-import Nav from '@/components/Navbar';
+import Nav from '@/app/components/Navbar';
 
 export const metadata: Metadata = {
   title: 'Narrative.ai',
