@@ -54,11 +54,6 @@ export async function POST(req: NextRequest) {
     let statusCode = 500;
     let message = 'Internal server error';
 
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      statusCode = 400;
-      message = 'Database request error';
-    }
-
     return new Response(JSON.stringify({ message }), { status: statusCode });
   }
 }
