@@ -226,8 +226,8 @@ export const whyPhDAnswers = `Pursuing a MS/Ph.D. aligns with my career goal of 
 
 export const universityData = {
   id: 'a123b456-78cd-90ef-gh12-34ij56kl789m',
-  name: 'Cornell University',
-  info: "Cornell University's Computer Science PhD program is renowned for its comprehensive curriculum and distinguished faculty. The program emphasizes interdisciplinary research and collaboration across various areas of computer science. Students are encouraged to engage in innovative research projects, contributing to advancements in fields like natural language processing, machine learning, and AI.",
+  name: 'Harvard University',
+  info: "Harvard University's Computer Science PhD program is renowned for its comprehensive curriculum and distinguished faculty. The program emphasizes interdisciplinary research and collaboration across various areas of computer science. Students are encouraged to engage in innovative research projects, contributing to advancements in fields like natural language processing, machine learning, and AI.",
   ranking: 5,
   acceptanceRate: 0.15,
   submissionDeadline: '2023-01-15',
